@@ -13,15 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function performSearch(query) {
         const csrf_token = document.getElementById('csrf_token').value;
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const targetUrl = `https://fapello.com/search/${encodeURIComponent(query)}`;
+        const url = proxyUrl + targetUrl;
 
-        fetch(`https://fapello.com/search/${encodeURIComponent(query)}`, {
+        fetch(url, {
             method: 'GET',
             headers: {
                 'User-Agent': 'JavaScript',
                 'X-CSRF-Token': csrf_token
             }
         })
-        .then(response => response.text())
+        .then(response => {
+            if (response.status === 403) {
+                throw new Error('CORS Access Forbidden');
+            }
+            return response.text();
+        })
         .then(html => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -58,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Erro na busca:', error);
-            document.getElementById('search-results').insertAdjacentHTML('beforeend', '<p>Erro na busca. Por favor, tente novamente.</p>');
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '<p>Erro na busca. Por favor, <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">clique aqui</a> e clique no botão "Request temporary access to the demo server", depois retorne e tente novamente.</p>';
         });
     }
 });
