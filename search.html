@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyFree | Pesquisa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .image-container {
+            margin-bottom: 15px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        #loader {
+            display: none;
+            text-align: center;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/f12eefa3ad.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<div class="fixed-top p-2 bg-white border-bottom">
+    <form id="search-form">
+        <div class="input-group">
+            <input type="hidden" name="csrf_token" id="csrf_token" value="fake_csrf_token_for_demo_purposes">
+            <input type="text" name="query" id="query" class="form-control" placeholder="@ do OnlyFans ou Privacy...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <!-- Title -->
+    <div class="title pt-5">
+        <h1 id="model-name-title"><i class="fa-solid fa-magnifying-glass mr-3"></i>Pesquisar</h1>
+        <p id="results-label"></p>
+    </div>
+
+    <!-- Search -->
+    <div id="search-results" class="row"></div>
+</div>
+
+<!-- Fixed Footer -->
+<footer>
+    <div class="nav-mobile fixed-bottom bg-white pt-3 border-top">
+        <div class="row text-center align-items-center">
+            <div class="col-3">
+                <a href="index.html" class="active-item">
+                    <i class="fa-solid fa-house"></i>
+                    <p id="home-item">Início</p>
+                </a>
+            </div>
+            <div class="col-3">
+                <a href="search.html" class="">
+                    <i class="fa-solid fa-magnifying-glass"></i>                     
+                    <p id="comunity-item">Pesquisar</p>
+                </a>
+            </div>
+            <div class="col-3">
+                <a href="favorites.html" class="">
+                    <i class="fa-solid fa-heart"></i>                      
+                    <p id="academic-item">Favoritos</p>
+                </a>
+            </div>
+            <div class="col-3">
+                <a href="profile.html" class="">
+                    <i class="fa-solid fa-user"></i>                   
+                    <p id="profile-item">Perfil</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="includes/js/script.js"></script>
+<script src="includes/js/search-script.js"></script>
+</body>
+</html>
